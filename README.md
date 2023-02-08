@@ -4,6 +4,7 @@ The Pass-Fail Analysis Function is a function created within the Zoho CRM to loo
 
 ## Solution Creation
 1. Go into Settings > Automation > Action > Functions Configure Function > Write Own Function. Make sure Module is selected for "PropertyDatabase"
+
 ![image](https://user-images.githubusercontent.com/124835926/217658823-3d99df7b-75d7-44d8-a3c9-04a7b04c102c.png)
 
 2. Edit the arguments and made the “key” name and Property_ID. This would allow us in the first line to access all the information of each account by using "getRecordBy"
