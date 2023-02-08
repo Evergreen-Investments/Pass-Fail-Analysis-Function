@@ -3,12 +3,13 @@
 The Pass-Fail Analysis Function is a function created within the Zoho CRM to look at the Property Database Module, compare Seller's Desired Net field and Conservative Net to Seller Field, and change the Status to "Pass/Fail Analysis" based on whether Desired Net is less than or equal to Conservative Net Seller.
 
 ## Solution Creation
-
-1. Edit the arguments and made the “key” name and Property_ID. This would allow us in the first line to access all the information of each account by using getRecordBy 
-
-2.Create a variable “SellerDN” where we accessed the sellers desired net by using “get” and finding the corresponding APIs.
+1. Edit the arguments and made the “key” name and Property_ID. This would allow us in the first line to access all the information of each account by using "getRecordBy "
 ```bash
 Recs = zoho.crm.getRecordById("PropertyDatabase", Property_ID);
+```
+2.Create a variable “SellerDN” where we accessed the sellers desired net by using “get” and finding the corresponding APIs.
+```bash
+SellerDN = Recs.get("Asking_Price");
 ```
 3.Repeat with Conservative Net to Seller data
 ```bash
