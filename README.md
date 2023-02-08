@@ -4,6 +4,7 @@ The Pass-Fail Analysis Function is a function created within the Zoho CRM to loo
 
 ## Solution Creation
 1. Edit the arguments and made the “key” name and Property_ID. This would allow us in the first line to access all the information of each account by using "getRecordBy "
+![image](https://user-images.githubusercontent.com/124835926/217657957-6f305653-640c-4887-ba43-a0d6d8d105c2.png)
 ```bash
 Recs = zoho.crm.getRecordById("PropertyDatabase", Property_ID);
 ```
