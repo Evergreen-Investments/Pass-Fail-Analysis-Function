@@ -42,9 +42,9 @@ if ( SellerDN <= ConNTS)
 	Status_Fail = "Fail Analysis";
 	Status_Update.put("Status", Status_Fail);
 ```
-9.Finally, make a variable outside of the condition to actually push the Update into the account, using "zoho.crm.UpdateRecord" along with already used the already made variables as the parameters.
+9.Finally, make a variable outside of the condition to actually push the Update into the account, using "zoho.crm.UpdateRecord" along with already used the already made variables as the parameters, and allow the workflow to be triggered.
 ```bash
-Update = zoho.crm.UpdateRecord("PropertyDatabase", Property_ID, Status_Update);
+Update = zoho.crm.updateRecord("PropertyDatabase",Property_ID,Status_Update,{"trigger":{"workflow"}});
 ```
 
 ## Diagram
