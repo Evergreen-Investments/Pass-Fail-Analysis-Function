@@ -1,28 +1,23 @@
 //Gets Records from Property Database
-Recs = zoho.crm.getRecordById("PropertyDatabase", Property_ID);
-
+Recs = zoho.crm.getRecordById("PropertyDatabase",Property_ID);
 //Gets Seller's Desired Net
 SellerDN = Recs.get("Asking_Price");
-
 //Gets Conservative Net to Seller
 ConNTS = Recs.get("MaxBidWholesalerRound");
-
-
 //Checks to see if Seller's Desired Net is less than Conservative Net
-if ( SellerDN <= ConNTS) 
+if(SellerDN <= ConNTS)
 {
 	//Changes Status to Pass Analysis
 	Status_Update = Map();
-	Status_Pass = "Pass Analysis";
-	Status_Update.put("Status", Status_Pass);
+	Status_Pass = "Active";
+	Status_Update.put("Status",Status_Pass);
 }
-else 
+else
 {
 	//Changes Status to Fail Anlysis
 	Status_Update = Map();
-	Status_Fail = "Fail Analysis";
-	Status_Update.put("Status", Status_Fail);
+	Status_Fail = "Inactive";
+	Status_Update.put("Status",Status_Fail);
 }
-
-//Updates the Statuses in the CRM
-Update = zoho.crm.UpdateRecord("PropertyDatabase", Property_ID, Status_Update);
+//Updates the Statuses in the CRM and triggers all the workflows
+Update = zoho.crm.updateRecord("PropertyDatabase",Property_ID,Status_Update,{"trigger":{"workflow"}});
