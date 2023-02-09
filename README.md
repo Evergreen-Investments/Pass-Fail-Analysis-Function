@@ -22,27 +22,32 @@ Recs = zoho.crm.getRecordById("PropertyDatabase", Property_ID);
 ```bash
 SellerDN = Recs.get("Asking_Price");
 ```
-5.Repeat with Conservative Net to Seller data
+5.Repeat with Conservative Net to Seller data and Property Type 
 ```bash
 ConNTS = Recs.get("MaxBidWholesalerRound");
+PropType =  Recs.get("Property_Profile_Type");
 ```
-6. Compare them using a if else conditional.
+7. Checks to see if Property Profile Type is Residential Income
+```bash
+if(PropType == "Residential Income"){
+```
+8. Compare them using a if else conditional.
 ```bash
 if ( SellerDN <= ConNTS)
 ```
-7.If the sellers desired net was less than the conservative net to seller value then it will update the status of the account as “Pass Analysis”, by using “Map()”, which allows us to take a variable with the new value, and put it into the “status” field in the account.
+9.If the sellers desired net was less than the conservative net to seller value then it will update the status of the account as “Pass Analysis”, by using “Map()”, which allows us to take a variable with the new value, and put it into the “status” field in the account.
 ```bash
 	Status_Update = Map();
 	Status_Pass = "Pass Analysis";
 	Status_Update.put("Status", Status_Pass);
 ```
-8.For the Else aspect this is where the "Fail Analysis" is updated by using the same “put” function.
+9.For the Else aspect this is where the "Fail Analysis" is updated by using the same “put” function.
 ```bash
   Status_Update = Map();
 	Status_Fail = "Fail Analysis";
 	Status_Update.put("Status", Status_Fail);
 ```
-9.Finally, make a variable outside of the condition to actually push the Update into the account, using "zoho.crm.UpdateRecord" along with already used the already made variables as the parameters, and allow the workflow to be triggered.
+10.Finally, make a variable outside of the condition to actually push the Update into the account, using "zoho.crm.UpdateRecord" along with already used the already made variables as the parameters, and allow the workflow to be triggered.
 ```bash
 Update = zoho.crm.updateRecord("PropertyDatabase",Property_ID,Status_Update,{"trigger":{"workflow"}});
 ```
